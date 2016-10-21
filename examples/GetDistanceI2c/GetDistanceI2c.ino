@@ -17,7 +17,7 @@
   680uF capacitor (-) to Arduino GND
 
   See the Operation Manual for wiring diagrams and more information:
-  http://static.garmin.com/pumac/LIDAR_Lite_v3_Operation_Manual_and_Technical_Specifications.pdf
+  http://www.robotshop.com/media/files/pdf2/pli-06-instruction.pdf
 
 ------------------------------------------------------------------------------*/
 
