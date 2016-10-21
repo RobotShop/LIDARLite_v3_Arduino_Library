@@ -1,7 +1,7 @@
 # LIDAR-Lite v3 Arduino Library
 
-* [Product Page](https://buy.garmin.com/en-US/US/oem/sensors-and-boards/lidar-lite-v3/prod557294.html)
-* [Operating Manual and Technical Specifications](http://static.garmin.com/pumac/LIDAR_Lite_v3_Operation_Manual_and_Technical_Specifications.pdf)
+* [Product Page](http://www.robotshop.com/en/lidar-lite-3-laser-rangefinder.html)
+* [Operating Manual and Technical Specifications](http://www.robotshop.com/media/files/pdf2/pli-06-instruction.pdf)
 
 This library provides quick access to all the basic functions of LIDAR-Lite
 via the Arduino interface. Additionally, it can provide a user of any
