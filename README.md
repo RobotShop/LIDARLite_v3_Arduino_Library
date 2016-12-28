@@ -24,11 +24,6 @@ This demonstration shows how to read distance using the I2C interface and choose
 ### ShortRangeHighSpeed
 This example shows a method to run LIDAR-Lite at high speed for short range applications. It combines a variety of settings to trade off range and accuracy for very fast measurements.
 
-## Version History
-* [v1.0.2](https://github.com/garmin/LIDARLite_v3_Arduino_Library/tree/v1.0.2) - Library Manager Update
-* [v1.0.1](https://github.com/garmin/LIDARLite_v3_Arduino_Library/tree/v1.0.1) - Release to Library Manager
-* [1.0.0](https://github.com/garmin/LIDARLite_v3_Arduino_Library/tree/1.0.0) - Initial release
-
 ## License
 Copyright (c) 2016 Garmin Ltd. or its subsidiaries. Distributed under the Apache 2.0 License.
 See [LICENSE](LICENSE) for further details.
