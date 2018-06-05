@@ -1,7 +1,7 @@
 # LIDAR-Lite Arduino Library
 
-* [Product Page - LLV3](http://www.robotshop.com/en/lidar-lite-3-laser-rangefinder.html) [Operating Manual and Technical Specifications](http://www.robotshop.com/media/files/pdf2/pli-06-instruction.pdf)
-* [Product Page - LLV3HP](https://www.robotshop.com/en/lidar-lite-3-laser-rangefinder-high-performance-llv3hp.html) [Operating Manual and Technical Specifications] (https://www.robotshop.com/media/files/pdf2/rb-pli-17_-_llv3hp_-_operation_manual_and_technical_specifications.pdf)
+* [Product Page - LLV3](http://www.robotshop.com/en/lidar-lite-3-laser-rangefinder.html) [(Operating Manual and Technical Specifications)](http://www.robotshop.com/media/files/pdf2/pli-06-instruction.pdf)
+* [Product Page - LLV3HP](https://www.robotshop.com/en/lidar-lite-3-laser-rangefinder-high-performance-llv3hp.html) [(Operating Manual and Technical Specifications)](https://www.robotshop.com/media/files/pdf2/rb-pli-17_-_llv3hp_-_operation_manual_and_technical_specifications.pdf)
 
 This library provides quick access to basic functions of LIDAR-Lite
 via the Arduino interface. Additionally, it can provide a user of any
