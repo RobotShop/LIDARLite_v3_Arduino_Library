@@ -15,16 +15,16 @@ For detailed specifications, pinout, and connection diagrams, see the manuals li
 To install, download this repository and place in your Arduino libraries folder or use the Arduino Library Manager. If you need help, follow the instructions here: [http://arduino.cc/en/Guide/Libraries](http://arduino.cc/en/Guide/Libraries).
 
 ## Example Sketches
-### v3/GetDistancePWM
+### [v3/GetDistancePWM](https://github.com/RobotShop/LIDARLite_v3_Arduino_Library/tree/master/examples/v3/GetDistanceI2c)
 This is the simplest demonstration of LIDAR-Lite. It shows how to read a distance using the PWM interface.
 
-### v3/GetDistanceI2c
+### [v3/GetDistanceI2c](https://github.com/RobotShop/LIDARLite_v3_Arduino_Library/tree/master/examples/v3/GetDistancePwm)
 This demonstration shows how to read distance using the I2C interface and choose preset configurations.
 
-### v3/ShortRangeHighSpeed
+### [v3/ShortRangeHighSpeed](https://github.com/RobotShop/LIDARLite_v3_Arduino_Library/tree/master/examples/v3/ShortRangeHighSpeed)
 This example shows a method to run LIDAR-Lite at high speed for short range applications. It combines a variety of settings to trade off range and accuracy for very fast measurements.
 
-### v3HP/v3HP_I2C
+### [v3HP/v3HP_I2C](https://github.com/RobotShop/LIDARLite_v3_Arduino_Library/blob/master/examples/v3HP/v3HP_I2C/v3HP_I2C.ino)
 This example shows various methods to run LIDAR-Lite v3HP.
 
 ## License
