@@ -24,6 +24,9 @@ This demonstration shows how to read distance using the I2C interface and choose
 ### v3/ShortRangeHighSpeed
 This example shows a method to run LIDAR-Lite at high speed for short range applications. It combines a variety of settings to trade off range and accuracy for very fast measurements.
 
+### v3HP/v3HP_I2C
+This example shows various methods to run LIDAR-Lite v3HP.
+
 ## License
 Copyright (c) 2018 Garmin Ltd. or its subsidiaries. Distributed under the Apache 2.0 License.
 See [LICENSE](LICENSE) for further details.
