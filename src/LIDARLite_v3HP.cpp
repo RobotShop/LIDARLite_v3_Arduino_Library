@@ -109,6 +109,47 @@ void LIDARLite_v3HP::configure(uint8_t configuration, uint8_t lidarliteAddress)
 } /* LIDARLite_v3HP::configure */
 
 /*------------------------------------------------------------------------------
+  Set I2C Address
+
+  Set Alternate I2C Device Address. See Operation Manual for additional info.
+
+  Parameters
+  ------------------------------------------------------------------------------
+  newAddress: desired secondary I2C device address
+  disableDefault: a non-zero value here means the default 0x62 I2C device
+    address will be disabled.
+  lidarliteAddress: Default 0x62. Fill in new address here if changed. See
+    operating manual for instructions.
+------------------------------------------------------------------------------*/
+void LIDARLite_v3HP::setI2Caddr (uint8_t newAddress, uint8_t disableDefault,
+                                 uint8_t lidarliteAddress)
+{
+    uint8_t dataBytes[2];
+
+    // Read UNIT_ID serial number bytes and write them into I2C_ID byte locations
+    read (0x16, dataBytes, 2, lidarliteAddress);
+    write(0x18, dataBytes, 2, lidarliteAddress);
+
+    // Write the new I2C device address to registers
+    // left shift by one to work around data alignment issue in v3HP
+    dataBytes[0] = (newAddress << 1);
+    write(0x1a, dataBytes, 1, lidarliteAddress);
+
+    // Enable the new I2C device address using the default I2C device address
+    read (0x1e, dataBytes, 1, lidarliteAddress);
+    dataBytes[0] = dataBytes[0] | (1 << 4); // set bit to enable the new address
+    write(0x1e, dataBytes, 1, lidarliteAddress);
+
+    // If desired, disable default I2C device address (using the new I2C device address)
+    if (disableDefault)
+    {
+        read (0x1e, dataBytes, 1, newAddress);
+        dataBytes[0] = dataBytes[0] | (1 << 3); // set bit to disable default address
+        write(0x1e, dataBytes, 1, newAddress);
+    }
+} /* LIDARLite_v3HP::setI2Caddr */
+
+/*------------------------------------------------------------------------------
   Take Range
 
   Initiate a distance measurement by writing to register 0x00.
@@ -149,11 +190,7 @@ void LIDARLite_v3HP::waitForBusy(uint8_t lidarliteAddress)
             break;
         }
 
-        // Read status register to check busy flag
-        read(0x01, &dataByte, 1);
-
-        // STATUS bit 0 is busyFlag
-        busyFlag = dataByte & 0x01;
+        busyFlag = getBusyFlag(lidarliteAddress);
 
         // Increment busyCounter for timeout
         busyCounter++;
@@ -165,6 +202,29 @@ void LIDARLite_v3HP::waitForBusy(uint8_t lidarliteAddress)
         Serial.println("> bailing out of waitForBusy()");
     }
 } /* LIDARLite_v3HP::waitForBusy */
+
+/*------------------------------------------------------------------------------
+  Get Busy Flag
+
+  Read BUSY flag from device registers. Function will return 0x00 if not busy.
+
+  Parameters
+  ------------------------------------------------------------------------------
+  lidarliteAddress: Default 0x62. Fill in new address here if changed. See
+    operating manual for instructions.
+------------------------------------------------------------------------------*/
+uint8_t LIDARLite_v3HP::getBusyFlag(uint8_t lidarliteAddress)
+{
+    uint8_t  busyFlag; // busyFlag monitors when the device is done with a measurement
+
+    // Read status register to check busy flag
+    read(0x01, &busyFlag, 1, lidarliteAddress);
+
+    // STATUS bit 0 is busyFlag
+    busyFlag &= 0x01;
+
+    return busyFlag;
+} /* LIDARLite_v3HP::getBusyFlag */
 
 /*------------------------------------------------------------------------------
   Read Distance
@@ -320,7 +380,6 @@ void LIDARLite_v3HP::correlationRecordToSerial(
     uint16_t numberOfReadings, uint8_t lidarliteAddress)
 {
     uint16_t  i = 0;
-    uint16_t  j = 0;
     uint8_t   dataBytes[32];         // Array to store read / write data
     int16_t   correlationValue = 0;  // Var to store value of correlation record
 
@@ -330,14 +389,14 @@ void LIDARLite_v3HP::correlationRecordToSerial(
 
     for (i=0 ; i<numberOfReadings ; i++)
     {
-        read(0x52, dataBytes, (4), lidarliteAddress);
+        read(0x52, dataBytes, 2, lidarliteAddress);
 
         //  Low byte is the value of the correlation record
-        correlationValue = (uint16_t) dataBytes[j*2];
+        correlationValue = (uint16_t) dataBytes[0];
 
         // if upper byte lsb is one, the value is negative
         // so here we test to artifically sign extend the data
-        if ( (int) dataBytes[(j*2) + 1] == 1)
+        if ( (int) dataBytes[1] == 1)
         {
             correlationValue |= 0xff00;
         }
