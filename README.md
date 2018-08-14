@@ -27,6 +27,9 @@ This example shows a method to run LIDAR-Lite at high speed for short range appl
 ### [v3HP/v3HP_I2C](https://github.com/RobotShop/LIDARLite_v3_Arduino_Library/blob/master/examples/v3HP/v3HP_I2C/v3HP_I2C.ino)
 This example shows various methods to run LIDAR-Lite v3HP.
 
+### v3HP/v3HP_MONITOR
+Use the MODE pin to monitor STATUS of the LIDAR-Lite v3HP.
+
 ## License
 Copyright (c) 2018 Garmin Ltd. or its subsidiaries. Distributed under the Apache 2.0 License.
 See [LICENSE](LICENSE) for further details.
